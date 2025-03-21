@@ -23,12 +23,9 @@ namespace ProdX.WebApi.Controllers
         public async Task<IActionResult> Get([FromQuery] GetAllProductQueryRequest request)
             => Ok(await _mediator.Send(request));
 
-    //    [HttpGet("{ProductId}")]
-    //    public async Task<IActionResult> Get([FromRoute] GetByIdProductQueryRequest request)
-    //=> Ok(_mediator.Send(request));
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> Get(Guid id) //Id degerini Guid tipte tuttugum icin burda direkt parametre ile aldim.
         {
             var result = await _mediator.Send(new GetByIdProductQueryRequest { Id = id });
 
@@ -42,9 +39,6 @@ namespace ProdX.WebApi.Controllers
         public async Task<IActionResult> Post([FromBody] CreateProductCommandRequest request)
             => Ok(await _mediator.Send(request));
 
-        //[HttpDelete("{ProductId}")]
-        //public async Task<IActionResult> Delete([FromRoute] DeleteProductCommandRequest request)
-        //    => Ok(await _mediator.Send(request));
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
